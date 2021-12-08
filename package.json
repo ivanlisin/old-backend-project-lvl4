@@ -1,6 +1,5 @@
 {
    "name": "@hexlet/code",
-   "version": "0.1.0",
    "main": "server/index.js",
    "scripts": {
       "test": "jest",
@@ -20,16 +19,6 @@
          "<rootDir>/__tests__/helpers/"
       ]
    },
-   "author": "Stanislav Dzisiak",
-   "license": "ISC",
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/hexlet-boilerplates/fastify-nodejs-application.git"
-   },
-   "bugs": {
-      "url": "https://github.com/hexlet-boilerplates/fastify-nodejs-application/issues"
-   },
-   "homepage": "https://github.com/hexlet-boilerplates/fastify-nodejs-application.git#readme",
    "dependencies": {
       "bootstrap": "^5.0.1",
       "dotenv": "^10.0.0",
