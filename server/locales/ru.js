@@ -2,7 +2,7 @@
 
 module.exports = {
   translation: {
-    appName: 'Fastify Шаблон',
+    appName: 'Менеджер задач',
     flash: {
       session: {
         create: {
@@ -27,6 +27,7 @@ module.exports = {
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
+        sourceCode: 'Исходный код',
       },
     },
     views: {
