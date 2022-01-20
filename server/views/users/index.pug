@@ -13,3 +13,5 @@ block content
           td= user.id
           td= user.email
           td= formatDate(user.createdAt)
+          td
+            a(href=`/users/${user.id}/edit`)= t('views.users.edit')
