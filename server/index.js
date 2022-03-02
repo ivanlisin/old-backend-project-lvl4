@@ -19,7 +19,7 @@ import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
 // @ts-ignore
-import webpackConfig from '../webpack.config.babel.js';
+import webpackConfig from '../webpack.config.js';
 
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
