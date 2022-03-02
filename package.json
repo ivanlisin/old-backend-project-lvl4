@@ -5,7 +5,7 @@
    "scripts": {
       "test": "jest --verbose",
       "build-frontend": "webpack",
-      "start": "PORT=5555 fastify start server/plugin.js"
+      "start": "fastify start server/plugin.js -l info -P"
    },
    "engines": {
       "node": "16.x"
