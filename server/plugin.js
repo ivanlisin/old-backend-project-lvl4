@@ -114,10 +114,10 @@ const registerPlugins = (app) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-export default (app, options) => {
+export default async (app, options) => {
   registerPlugins(app);
 
-  setupLocalization();
+  await setupLocalization();
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);
