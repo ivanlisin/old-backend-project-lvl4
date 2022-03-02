@@ -11,7 +11,7 @@ describe('requests', () => {
   let app;
 
   beforeAll(async () => {
-    app = fastify();
+    app = fastify({ logger: { prettyPrint: true } });
     await init(app);
   });
 
@@ -31,7 +31,7 @@ describe('requests', () => {
     expect(res.statusCode).toBe(404);
   });
 
-  afterAll(() => {
-    app.close();
+  afterAll(async () => {
+    await app.close();
   });
 });
