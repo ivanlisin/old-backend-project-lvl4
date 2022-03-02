@@ -1,7 +1,9 @@
 // @ts-check
 
 import _ from 'lodash';
-import getApp from '../server/index.js';
+import fastify from 'fastify';
+
+import init from '../server/plugin.js';
 import encrypt from '../server/lib/secure.js';
 import { getTestData, prepareData } from './helpers/index.js';
 
@@ -12,17 +14,20 @@ describe('test users CRUD', () => {
   const testData = getTestData();
 
   beforeAll(async () => {
-    app = await getApp();
+    app = fastify();
+    await init(app);
     knex = app.objection.knex;
     models = app.objection.models;
-  });
 
-  beforeEach(async () => {
+    // TODO: пока один раз перед тестами
     // тесты не должны зависеть друг от друга
     // перед каждым тестом выполняем миграции
     // и заполняем БД тестовыми данными
     await knex.migrate.latest();
     await prepareData(app);
+  });
+
+  beforeEach(async () => {
   });
 
   it('index', async () => {
@@ -63,11 +68,12 @@ describe('test users CRUD', () => {
   });
 
   afterEach(async () => {
+    // Пока Segmentation fault: 11
     // после каждого теста откатываем миграции
-    await knex.migrate.rollback();
+    // await knex.migrate.rollback();
   });
 
-  afterAll(() => {
-    app.close();
+  afterAll(async () => {
+    await app.close();
   });
 });

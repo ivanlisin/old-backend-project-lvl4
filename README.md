@@ -7,12 +7,11 @@
 ```sh
 $ make setup
 ```
-
 ## Run
 
 ```sh
 $ make start
-# Open localhost:5000
+# Open localhost:6000
 ```
 
 ## Already launched!
