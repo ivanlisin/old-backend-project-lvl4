@@ -41,9 +41,9 @@ export default (app) => {
         req.flash('info', i18next.t('flash.users.edit.success'));
         reply.redirect(app.reverse('users'));
         return reply;
-      } catch ({ data }) {
+      } catch (err) {
         req.flash('error', i18next.t('flash.users.edit.error'));
-        reply.render('users/edit', { user: req.body.data, errors: data });
+        reply.render('users/edit', { user: req.body.data, errors: err.data });
         return reply;
       }
     });
