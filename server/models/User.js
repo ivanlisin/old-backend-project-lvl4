@@ -7,6 +7,7 @@ import encrypt from '../lib/secure.js';
 
 const unique = objectionUnique({ fields: ['email'] });
 
+// TODO: настроить валидацию email
 export default class User extends unique(Model) {
   static get tableName() {
     return 'users';
@@ -25,7 +26,7 @@ export default class User extends unique(Model) {
         id: { type: 'integer' },
         firstName: { type: 'string', minLength: 1 },
         lastName: { type: 'string', minLength: 1 },
-        email: { type: 'string', format: 'email' },
+        email: { type: 'string' },
         password: { type: 'string', minLength: 3 },
       },
     };
