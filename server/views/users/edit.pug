@@ -4,9 +4,10 @@ block header
   = t('views.users.settings')
 
 block content
-  form(action=`/users/${id}` method='post')
+  +formFor()(action=`/users/${id}` method='post')
     +input(user, 'firstName', t('views.users.firstName'), errors)(type="text")
     +input(user, 'lastName', t('views.users.lastName'), errors)(type="text")
     +input(user, 'email', t('views.users.email'), errors)(type="text")
     +input(user, 'password', t('views.users.password'), errors)(type="password")
+    +overrideMethod('patch')
     +submit(user)(value=t('views.users.edit'))

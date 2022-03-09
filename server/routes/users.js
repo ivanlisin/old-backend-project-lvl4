@@ -32,7 +32,7 @@ export default (app) => {
         return reply;
       }
     })
-    .post('/users/:id', async (req, reply) => {
+    .patch('/users/:id', async (req, reply) => {
       try {
         const { id } = req.params;
         const { data } = req.body;

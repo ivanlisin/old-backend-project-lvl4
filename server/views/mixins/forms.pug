@@ -25,6 +25,9 @@ mixin input(entity, propertyName, labelText, errors = {})
 mixin submit(form = null)
   input(class='btn btn-primary' type='submit')&attributes(attributes)
 
+mixin overrideMethod(method)
+  input(name="_method" type="hidden" value=method)
+
 mixin buttonTo(action, method)
   form(action=action, method="post")
     input(name="_method" type="hidden" value=method)
