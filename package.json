@@ -41,6 +41,7 @@
       "npm-check-updates": "^12.3.0",
       "objection": "^3.0.1",
       "objection-unique": "^1.2.2",
+      "pg": "^8.7.3",
       "pino-pretty": "^7.5.1",
       "point-of-view": "^5.1.0",
       "pug": "^3.0.2",
