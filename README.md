@@ -11,7 +11,7 @@ $ make setup
 
 ```sh
 $ make start
-# Open localhost:6000
+# Open localhost:5000
 ```
 
 ## Already launched!
