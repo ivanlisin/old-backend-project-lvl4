@@ -11,6 +11,9 @@ db-migrate:
 prepare:
 	cp -n .env.example .env || true
 
+build:
+	npm run build-frontend
+
 start:
 	heroku local -f Procfile.dev
 
