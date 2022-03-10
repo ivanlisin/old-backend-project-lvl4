@@ -49,6 +49,7 @@ export default {
         id: 'ID',
         firstName: 'Имя',
         lastName: 'Фамилия',
+        fullName: 'Полное имя',
         email: 'Email',
         password: 'Пароль',
         createdAt: 'Дата создания',
