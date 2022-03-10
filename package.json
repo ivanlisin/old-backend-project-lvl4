@@ -1,6 +1,5 @@
 {
    "name": "@hexlet/code",
-   "main": "server/index.js",
    "type": "module",
    "scripts": {
       "test": "jest --verbose",
