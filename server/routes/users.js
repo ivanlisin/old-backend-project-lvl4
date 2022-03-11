@@ -39,21 +39,27 @@ export default (app) => {
         return reply;
       }
     })
-    .patch('/users/:id', async (req, reply) => {
+    .patch('/users/:id', app.fp.authenticate('check', async (req, reply, err, user) => {
+      if (err) {
+        return app.httpErrors.internalServerError(err);
+      }
+      if (!user) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      }
       try {
-        const { id } = req.params;
         const { data } = req.body;
-        const user = await app.objection.models.user.query().findById(id);
         await user.$query().patch({ ...data });
         req.flash('info', i18next.t('flash.users.edit.success'));
         reply.redirect(app.reverse('users'));
         return reply;
-      } catch (err) {
+      } catch (e) {
         req.flash('error', i18next.t('flash.users.edit.error'));
-        reply.render('users/edit', { user: req.body.data, errors: err.data });
+        reply.render('users/edit', { user: req.body.data, errors: e.data });
         return reply;
       }
-    })
+    }))
     .delete('/users/:id', async (req, reply) => {
       try {
         const { id } = req.params;
