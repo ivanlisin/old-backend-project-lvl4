@@ -13,18 +13,19 @@ export default (app) => {
       const user = new app.objection.models.user();
       reply.render('users/new', { user });
     })
-    .get('/users/:id/edit', async (req, reply) => {
+    .get('/users/:id/edit', app.fp.authenticate('check', async (req, reply, err, user) => {
       const { id } = req.params;
-      const passport = req.session.get('passport');
-      const user = await app.objection.models.user.query().findById(id);
-      if (passport.email === user.email && passport.passwordDigest === user.passwordDigest) {
-        reply.render('users/edit', { id, user });
+      if (err) {
+        return app.httpErrors.internalServerError(err);
+      }
+      if (!user) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
         return reply;
       }
-      req.flash('info', i18next.t('flash.authError'));
-      reply.redirect(app.reverse('root'));
+      reply.render('users/edit', { id, user });
       return reply;
-    })
+    }))
     .post('/users', async (req, reply) => {
       try {
         const user = await app.objection.models.user.fromJson(req.body.data);

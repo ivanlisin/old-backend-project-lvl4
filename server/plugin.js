@@ -24,6 +24,7 @@ import getHelpers from './helpers/index.js';
 import * as knexConfig from '../knexfile.js';
 import models from './models/index.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
+import CheckStrategy from './lib/passportStrategies/CheckStrategy.js';
 
 const __dirname = fileURLToPath(path.dirname(import.meta.url));
 
@@ -94,11 +95,12 @@ const registerPlugins = (app) => {
   );
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
   fastifyPassport.use(new FormStrategy('form', app));
+  fastifyPassport.use(new CheckStrategy('check', app));
   app.register(fastifyPassport.initialize());
   app.register(fastifyPassport.secureSession());
   app.decorate('fp', fastifyPassport);
   app.decorate('authenticate', (...args) => fastifyPassport.authenticate(
-    'form',
+    ['form', 'check'],
     {
       failureRedirect: app.reverse('root'),
       failureFlash: i18next.t('flash.authError'),
