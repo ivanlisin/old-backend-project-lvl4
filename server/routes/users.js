@@ -15,8 +15,14 @@ export default (app) => {
     })
     .get('/users/:id/edit', async (req, reply) => {
       const { id } = req.params;
+      const passport = req.session.get('passport');
       const user = await app.objection.models.user.query().findById(id);
-      reply.render('users/edit', { id, user });
+      if (passport.email === user.email && passport.passwordDigest === user.passwordDigest) {
+        reply.render('users/edit', { id, user });
+        return reply;
+      }
+      req.flash('info', i18next.t('flash.authError'));
+      reply.redirect(app.reverse('root'));
       return reply;
     })
     .post('/users', async (req, reply) => {
