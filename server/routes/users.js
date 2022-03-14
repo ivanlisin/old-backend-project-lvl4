@@ -60,18 +60,25 @@ export default (app) => {
         return reply;
       }
     }))
-    .delete('/users/:id', async (req, reply) => {
+    .delete('/users/:id', app.fp.authenticate('check', async (req, reply, err, user) => {
+      if (err) {
+        return app.httpErrors.internalServerError(err);
+      }
+      if (!user) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      }
       try {
-        const { id } = req.params;
-        const user = await app.objection.models.user.query().findById(id);
+        req.logOut();
         await user.$query().delete();
         req.flash('info', i18next.t('flash.users.delete.success'));
         reply.redirect(app.reverse('users'));
         return reply;
-      } catch (err) {
+      } catch (e) {
         req.flash('error', i18next.t('flash.users.delete.error'));
-        reply.render('users/edit', { user: req.body.data, errors: err.data });
+        reply.render('users/edit', { user: req.body.data, errors: e.data });
         return reply;
       }
-    });
+    }));
 };
