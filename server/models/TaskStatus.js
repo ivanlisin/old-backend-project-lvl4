@@ -1,8 +1,11 @@
 // @ts-check
 
 import { Model } from 'objection';
+import objectionUnique from 'objection-unique';
 
-export default class TaskStatus extends Model {
+const unique = objectionUnique({ fields: ['email'] });
+
+export default class TaskStatus extends unique(Model) {
   static get tableName() {
     return 'task-statuses';
   }
