@@ -15,8 +15,6 @@ export default class CheckStrategy extends Strategy {
 
     const { id } = request.params;
     const passport = request.session.get('passport');
-    console.log(request.session);
-    console.log(passport);
     const user = await this.app.objection.models.user.query().findById(id);
     if (passport.email === user.email && passport.passwordDigest === user.passwordDigest) {
       return this.success(user);
