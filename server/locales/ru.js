@@ -32,6 +32,7 @@ export default {
     layouts: {
       application: {
         users: 'Пользователи',
+        statuses: 'Статусы',
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
@@ -60,6 +61,9 @@ export default {
         edit: 'Изменить',
         delete: 'Удалить',
         settings: 'Настройки',
+      },
+      statuses: {
+        name: 'Название',
       },
       welcome: {
         index: {
