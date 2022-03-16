@@ -69,6 +69,7 @@ export default {
         settings: 'Настройки',
       },
       statuses: {
+        id: 'ID',
         name: 'Название',
         header: 'Статусы задачи',
         new: {
