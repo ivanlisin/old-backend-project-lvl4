@@ -80,6 +80,7 @@ export default {
         id: 'ID',
         name: 'Название',
         header: 'Статусы задачи',
+        createdAt: 'Дата создания',
         new: {
           action: 'Создать статус задачи',
           header: 'Создание статуса задачи',
