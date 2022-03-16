@@ -16,4 +16,6 @@ block content
           td= status.id
           td= status.name
           td
-            a.btn.btn-link(href=`/statuses/${status.id}/edit`)= t('views.statuses.edit')
+            .d-flex.flex-row
+              a.btn.btn-link(href=`/statuses/${status.id}/edit`)= t('views.statuses.edit')
+              +buttonTo(`/statuses/${status.id}`, 'delete')(class='btn btn-link' value=t('views.statuses.delete'))

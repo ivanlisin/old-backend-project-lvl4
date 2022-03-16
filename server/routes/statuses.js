@@ -70,5 +70,24 @@ export default (app) => {
         reply.render('statuses/edit', { status: req.body.data, errors: e.data });
         return reply;
       }
+    })
+    .delete('/statuses/:id', async (req, reply) => {
+      if (!req.isAuthenticated()) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      }
+      try {
+        const { id } = req.params;
+        const status = await app.objection.models.taskStatus.query().findById(id);
+        await status.$query().delete();
+        req.flash('info', i18next.t('flash.statuses.delete.success'));
+        reply.redirect(app.reverse('statuses'));
+        return reply;
+      } catch (e) {
+        req.flash('error', i18next.t('flash.statuses.delete.error'));
+        reply.render('users/edit', { status: req.body.data, errors: e.data });
+        return reply;
+      }
     });
 };
