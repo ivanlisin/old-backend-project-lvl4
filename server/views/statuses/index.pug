@@ -15,3 +15,5 @@ block content
         tr
           td= status.id
           td= status.name
+          td
+            a.btn.btn-link(href=`/statuses/${status.id}/edit`)= t('views.statuses.edit')
