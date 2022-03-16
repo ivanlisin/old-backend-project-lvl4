@@ -3,7 +3,7 @@
 import { Model } from 'objection';
 import objectionUnique from 'objection-unique';
 
-const unique = objectionUnique({ fields: ['email'] });
+const unique = objectionUnique({ fields: ['name'] });
 
 export default class TaskStatus extends unique(Model) {
   static get tableName() {
