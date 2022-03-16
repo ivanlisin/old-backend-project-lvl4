@@ -11,5 +11,33 @@ export default (app) => {
       const statuses = await app.objection.models.taskStatus.query();
       reply.render('statuses/index', { statuses });
       return reply;
+    })
+    .get('/statuses/new', { name: 'newStatus' }, async (req, reply) => {
+      if (!req.isAuthenticated()) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      }
+      const status = new app.objection.models.taskStatus();
+      reply.render('statuses/new', { status });
+      return reply;
+    })
+    .post('/statuses', async (req, reply) => {
+      if (!req.isAuthenticated()) {
+        req.flash('info', i18next.t('flash.authError'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      }
+      try {
+        const status = await app.objection.models.taskStatus.fromJson(req.body.data);
+        await app.objection.models.taskStatus.query().insert(status);
+        req.flash('info', i18next.t('flash.statuses.create.success'));
+        reply.redirect(app.reverse('root'));
+        return reply;
+      } catch (err) {
+        req.flash('error', i18next.t('flash.statuses.create.error'));
+        reply.render('status/new', { status: req.body.data, errors: err.data });
+        return reply;
+      }
     });
 };

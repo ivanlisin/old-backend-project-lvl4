@@ -1,6 +1,10 @@
 extends ../layouts/application.pug
 
+block header
+  = t('views.statuses.header')
+
 block content
+  a.btn.btn-primary(href=route('newStatus'))= t('views.statuses.new.action')
   table.table.table-striped
     thead
       tr
