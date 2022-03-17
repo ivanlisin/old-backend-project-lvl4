@@ -1,6 +1,7 @@
 {
    "name": "@hexlet/code",
    "type": "module",
+   "author": "Ivan Lisin <ivanlisin.tech@gmail.com>",
    "license": "MIT",
    "scripts": {
       "test": "jest --verbose",
