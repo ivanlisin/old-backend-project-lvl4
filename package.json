@@ -1,6 +1,7 @@
 {
    "name": "@hexlet/code",
    "type": "module",
+   "license": "MIT",
    "scripts": {
       "test": "jest --verbose",
       "build-frontend": "webpack",
