@@ -17,6 +17,8 @@ html(lang="en")
           if isAuthenticated()
             li
               a(class="nav-link px-2 link-secondary" href=route('statuses'))= t('layouts.application.statuses')
+            li
+              a(class="nav-link px-2 link-secondary" href=route('tasks'))= t('layouts.application.tasks')
         div(class="col-md-3 text-end")
           if isAuthenticated()
             +buttonTo(route('session'), 'delete')(class="btn btn-outline-primary me-2" value=t('layouts.application.signOut'))

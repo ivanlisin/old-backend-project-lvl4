@@ -1,0 +1,24 @@
+extends ../layouts/application.pug
+
+block header
+  = t('views.tasks.header')
+
+block content
+  table.table.table-striped
+    thead
+      tr
+        th= t('views.tasks.id')
+        th= t('views.tasks.name')
+        th= t('views.tasks.status')
+        th= t('views.tasks.creator')
+        th= t('views.tasks.performer')
+        th= t('views.tasks.createdAt')
+    tbody
+      each task in tasks
+        tr
+          td= task.id
+          td= task.name
+          td= task.status
+          td= task.author
+          td= task.performer
+          td= task.createdAt

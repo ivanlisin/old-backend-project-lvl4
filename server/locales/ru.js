@@ -47,6 +47,7 @@ export default {
       application: {
         users: 'Пользователи',
         statuses: 'Статусы',
+        tasks: 'Задачи',
         signIn: 'Вход',
         signUp: 'Регистрация',
         signOut: 'Выход',
@@ -88,6 +89,15 @@ export default {
         },
         edit: 'Изменить',
         delete: 'Удалить',
+      },
+      tasks: {
+        header: 'Задачи',
+        id: 'ID',
+        name: 'Наименование',
+        status: 'Статус',
+        creator: 'Автор',
+        performer: 'Исполнитель',
+        createdAt: 'Дата создания',
       },
     },
   },
