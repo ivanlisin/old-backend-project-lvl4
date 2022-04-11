@@ -62,6 +62,7 @@ export default {
         },
       },
       users: {
+        header: 'Пользователи',
         id: 'ID',
         firstName: 'Имя',
         lastName: 'Фамилия',
