@@ -18,7 +18,7 @@ block content
         tr
           td= task.id
           td= task.name
-          td= task.status
-          td= task.author
-          td= task.performer
+          td= task.status.name
+          td= makeFullName(task.creator.firstName, task.creator.lastName)
+          td= makeFullName(task.performer.firstName, task.performer.lastName)
           td= task.createdAt

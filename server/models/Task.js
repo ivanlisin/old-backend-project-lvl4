@@ -9,14 +9,6 @@ export default class Task extends Model {
     return 'tasks';
   }
 
-  static get modifiers() {
-    return {
-      'query.status': (query, statusId) => {
-        if (statusId) query.andWhere({ statusId });
-      },
-    };
-  }
-
   static get relationMappings() {
     return {
       status: {

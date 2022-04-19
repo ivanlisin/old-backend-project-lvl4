@@ -5,10 +5,8 @@
 export default (app) => {
   app
     .get('/tasks', { name: 'tasks' }, async (req, reply) => {
-      const tasks = await app.objection.models.task.query();
-      console.log(tasks);
-      console.log(tasks[0].status);
-      console.log(tasks[0].creator);
+      const tasks = await app.objection.models.task.query()
+        .withGraphJoined('[status, creator, performer]');
       reply.render('tasks/index', { tasks });
       return reply;
     });

@@ -29,4 +29,7 @@ export default (app) => ({
     const date = new Date(str);
     return date.toLocaleString();
   },
+  makeFullName(firstName, lastName) {
+    return `${firstName} ${lastName}`;
+  },
 });
